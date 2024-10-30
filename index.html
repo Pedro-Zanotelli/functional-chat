@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <meta name="description" content="Memory game made with JavaScript"><meta name="keywords" content="HTML, CSS, JavaScript, Memory Game, Cards"><meta name="author" content="Pedro Henrique Zanotelli">
+    <title>ZanoChat</title>
+</head>
+<body>
+    <div class="topo">
+        <div class="logo">
+            <img src="assets/logo.png" alt="logo">
+        </div>
+        <div class="opcoes">
+            <ion-icon name="people" onclick="adicionarAba()"></ion-icon>
+        </div>
+    </div>
+
+    <div class="chat">
+        <ul>
+        </ul>
+    </div>
+
+    <div class="painel-de-escrita">
+        <div class="escrever">
+            <input type="text" placeholder="Escreva aqui...">
+            <div class="enviarPara">
+                
+            </div>
+        </div>
+        <div class="enviar-mensagem">
+            <ion-icon name="paper-plane-outline" onclick="adicionarNovaMensagem()"></ion-icon>
+        </div>
+    </div>
+
+    <div class="aba">
+        <div class="contatos">
+            <div class="titulo">
+                <h1>Escolha um contato<br>para enviar mensagem:</h1>
+            </div> 
+            <div class="contatos-disponiveis">
+                <div class="todos" onclick="adicionarCheck1(this)">
+                    <ion-icon name="people" class="icone1"></ion-icon> 
+                    <span>Todos</span>
+                </div>
+                <ul class="usuarios">
+                </ul>
+            </div>
+        </div>
+        <div class="visiblidade">
+            <div class="titulo">
+                <h1>Escolha a visiblidade</h1>
+            </div> 
+            <ul class="pubOuRes">
+            </ul>
+        </div>
+    </div>
+
+    <div class="fundo invisivel" onclick="removerAba()"></div>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

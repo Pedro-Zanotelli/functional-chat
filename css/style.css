@@ -1,0 +1,306 @@
+body, html{
+    background-color: #F3F3F3;
+    min-height: 100vh;    
+}
+
+.topo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.1); 
+    z-index: 1;
+}
+
+.topo ion-icon{
+    font-size: 45px;
+    margin-right: 22px;
+    cursor: pointer;
+}
+
+.topo ion-icon:active{
+    transform: translateY(3px);
+}
+
+.logo img {
+    width: 100px ;
+    height: 53px;
+    margin-left: 22px;
+    cursor: pointer;
+}
+
+.painel-de-escrita{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 92px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.3); 
+    z-index: 1;
+}
+
+.enviar-mensagem ion-icon:active {
+    transform: translateY(3px);
+}
+
+
+.enviar-mensagem ion-icon{
+    font-size: 26px;
+    margin-right: 22px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.escrever{
+    width: 100%;
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    margin-left: 17px;
+}
+
+.enviarPara {
+    font-size: 14px;
+    padding-left: 10px;
+    color: #505050;
+    margin-bottom: 10px;
+}
+
+input {
+    height: 40px;
+    border: none;
+    font-size: 18px;
+    padding-left: 10px;
+    outline: none;
+}
+
+input::placeholder {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+    opacity: 1;
+ }
+
+.aba {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100%;
+    width: 0;
+    transition: all 0.2s ease-out;
+    z-index: 2;
+    font-family: "Roboto", sans-serif;
+    overflow: hidden;
+}
+
+.aba.active {
+    width: 260px;
+}
+
+.contatos{
+    width: 260px;
+}
+
+.contatos-disponiveis{
+    width: 100%;
+    height: 100%;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 16px;
+}
+
+.icone1{
+    font-size: 25px;
+    margin-right: 7px;
+}
+
+.check {
+    font-size: 15px;
+    color: #28BB25;
+    margin-left: auto;
+}
+
+.todos{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+    height: 36px;
+}
+
+.usuario{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 36px;
+}
+
+.usuario p{
+    color: #AAAAAA;
+    margin-left: 5px;
+}
+
+.pubOuRes{
+    width: 100%;
+    height: 100%;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 16px;
+}
+
+.publico{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 36px;
+}
+
+.reservado{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 36px;
+}
+
+.publico:hover{
+    background-color: rgb(199, 196, 196);
+}
+
+.reservado:hover{
+    background-color: rgb(199, 196, 196);
+}
+
+.usuario:hover{
+    background-color: rgb(199, 196, 196);
+}
+
+.todos:hover{
+    background-color: rgb(199, 196, 196);
+}
+
+.titulo {
+    display: flex;
+    height: 84px;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    line-height: 18.75px;
+}
+
+
+
+h1 {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.603);
+    z-index: 1;
+}
+
+.invisivel{
+    display: none;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 110px;
+    margin-bottom: 110px;
+    width: 100%;
+    height: 100%; 
+}
+
+ul {
+    font-family: "Roboto", sans-serif;
+}
+
+li{
+    height: 40px;
+    align-items: center;
+    display: flex;
+    color: #000000;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 4px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.status{
+    background-color:#DCDCDC;
+    ;
+}
+
+.privado{
+    background-color: #FFDEDE;
+}
+
+.time {
+    color: #AAAAAA;
+    padding-right: 4px;
+}
+
+.voce {
+    display: flex;
+}
+
+
+@media (min-width: 935px) {
+    body, html{
+        background-color: #F3F3F3;
+        display: flex;
+        justify-content: center; 
+    }
+    .chat{
+        height: auto;
+        width: 1050px;
+    }
+}
