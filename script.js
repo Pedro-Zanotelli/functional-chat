@@ -21,7 +21,7 @@ function removerAba() {
 
 function manterConexao() {
     const novoNome = { name: nome };
-    axios.post(`https://mock-api.driven.com.br/api/v6/uol/status/9eafcf41-7c4f-4645-a4d5-0e804b83e1a4`, novoNome)
+    axios.post(`https://mock-api.driven.com.br/api/v6/uol/status/1426b8fb-baa5-41c2-a61b-c1ee4aa21701`, novoNome)
         .then(() => console.log("Status enviado com sucesso"))
         .catch(erro => {
             console.error("Erro ao enviar status:", erro);
@@ -34,7 +34,7 @@ function manterConexao() {
 function registrarNome() {
     let nomeExistente;
 
-    axios.get("https://mock-api.driven.com.br/api/v6/uol/participants/9eafcf41-7c4f-4645-a4d5-0e804b83e1a4")
+    axios.get("https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701")
         .then((resposta) => {
             const participantes = resposta.data;
 
@@ -59,7 +59,7 @@ function registrarNome() {
 
             const novoNome = { name: nome };
 
-            axios.post("https://mock-api.driven.com.br/api/v6/uol/participants/9eafcf41-7c4f-4645-a4d5-0e804b83e1a4", novoNome)
+            axios.post("https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701", novoNome)
                 .then(() => {
                     console.log("Nome registrado:", nome);
                     setInterval(manterConexao, 5000);
@@ -89,7 +89,7 @@ function adicionarNovaMensagem() {
             type: tipoDeMensagem 
         };
 
-        axios.post("https://mock-api.driven.com.br/api/v6/uol/messages/9eafcf41-7c4f-4645-a4d5-0e804b83e1a4", objetoMensagem)
+        axios.post("https://mock-api.driven.com.br/api/v6/uol/messages/1426b8fb-baa5-41c2-a61b-c1ee4aa21701", objetoMensagem)
             .then(() => {
                 console.log("Mensagem enviada.", novaMensagem);
                 buscarMensagens();
@@ -118,7 +118,7 @@ function formatarHorario(horarioString) {
 }
 
 function buscarMensagens() {
-    axios.get("https://mock-api.driven.com.br/api/v6/uol/messages/9eafcf41-7c4f-4645-a4d5-0e804b83e1a4")
+    axios.get("https://mock-api.driven.com.br/api/v6/uol/messages/1426b8fb-baa5-41c2-a61b-c1ee4aa21701")
         .then((resposta) => {
             const mensagens = resposta.data;
             const ul = document.querySelector("ul");
@@ -216,7 +216,7 @@ function adicionarCheck2(selecionado) {
 }
 
 function mostrarUsuarios() {
-    axios.get("https://mock-api.driven.com.br/api/v6/uol/participants/9eafcf41-7c4f-4645-a4d5-0e804b83e1a4")
+    axios.get("https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701")
         .then((resposta) => {
             const participantes = resposta.data;
             const ul = document.querySelector(".usuarios");
