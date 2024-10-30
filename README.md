@@ -1,6 +1,6 @@
-﻿# functional-chat
+﻿# zanoChat
  
-Try it out now at https://pedro-zanotelli.github.io/DrivenEats/
+Try it out now at https://pedro-zanotelli.github.io/zanoChat/
 
 # Chat Application
 
