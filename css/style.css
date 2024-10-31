@@ -223,8 +223,6 @@ input::placeholder {
     line-height: 18.75px;
 }
 
-
-
 h1 {
     font-size: 16px;
     font-weight: 700;
@@ -263,24 +261,37 @@ ul {
 }
 
 li{
-    height: 40px;
-    align-items: center;
-    display: flex;
-    color: #000000;
-    padding-left: 10px;
-    padding-right: 10px;
+    word-break: break-word; /* Garante a quebra de palavras longas */
     margin-bottom: 4px;
-    background-color: white;
-    font-size: 14px;
+    overflow: hidden; /* Oculta o texto que ultrapassa */
+    word-break: break-all; /* Quebra a palavra se necessário */
 }
 
 .status{
     background-color:#DCDCDC;
-    ;
+    height: 40px;
 }
 
 .privado{
     background-color: #FFDEDE;
+}
+
+.msgNormal{
+    background-color: white;
+}
+
+.msgNormal,
+.privado, .status {
+    word-wrap: break-word; /* Quebra de linha em palavras longas */
+    max-width: 100%; /* Limitar a largura máxima */
+    overflow-wrap: break-word; /* Permite que palavras longas sejam quebradas */
+    display: flex; /* Alinha o conteúdo dentro do li */
+    flex-direction: column; /* Permite que o texto ocupe várias linhas */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    justify-content: center;
+    padding: 8px; /* Adiciona espaçamento interno */
+    border-radius: 5px; /* Adiciona bordas arredondadas */
+    line-height: 1.5;
 }
 
 .time {

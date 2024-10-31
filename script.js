@@ -7,6 +7,8 @@ let tipoDeMensagem = "message";
 let nomeSelecionado = "Todos"; 
 let visibilidade = "público"
 
+const nomeModal = document.getElementById("nomeModal");
+
 function adicionarAba() {
     aba.classList.add("active");
     fundo.classList.remove("invisivel");
@@ -24,50 +26,56 @@ function manterConexao() {
     axios.post(`https://mock-api.driven.com.br/api/v6/uol/status/1426b8fb-baa5-41c2-a61b-c1ee4aa21701`, novoNome)
         .then(() => console.log("Status enviado com sucesso"))
         .catch(erro => {
-            console.error("Erro ao enviar status:", erro);
-            if (!erro.response || erro.response.status >= 500) {
-                window.location.reload();
-            }
+            console.error("Erro ao enviar status:", erro)
         });
 }
 
-function registrarNome() {
-    let nomeExistente;
+window.onbeforeunload = () => {
+    axios.post(`https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701`, { name: nome }, { method: 'DELETE' })
+        .catch((erro) => {
+            console.error("Erro ao remover usuário ao fechar a página:", erro);
+        });
+};
 
+function registrarNome() {
     axios.get("https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701")
         .then((resposta) => {
             const participantes = resposta.data;
-
-            do {
+            let nomeExistente;
+            
+            const solicitarNome = () => {
                 nome = prompt("Insira seu nome");
                 
                 if (!nome) {
                     alert("Bota um nome ae");
+                    solicitarNome();
+
                     const erro = { response: { status: 400, data: "Você deve inserir um nome" } };
                     quandoErro(erro);
-                    return registrarNome();
+                    return 
                 }
+
                 nomeExistente = participantes.find(participante => participante.name === nome);
 
                 if (nomeExistente) {
                     alert("Nome já registrado! Escolha outro nome.");
+                    solicitarNome();
+
                     const erro = { response: { status: 400, data: "Nome já registrado!" } };
                     quandoErro(erro);
+                } else {
+                    const novoNome = { name: nome };
+                    axios.post("https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701", novoNome)
+                    .then(() => {
+                        console.log("Nome registrado:", nome);
+                        setInterval(manterConexao, 5000);
+                        setInterval(buscarMensagens, 3000);
+                        setInterval(mostrarUsuarios, 3000);
+                    })
+                    .catch(quandoErro); 
                 }
-
-            } while (nomeExistente);
-
-            const novoNome = { name: nome };
-
-            axios.post("https://mock-api.driven.com.br/api/v6/uol/participants/1426b8fb-baa5-41c2-a61b-c1ee4aa21701", novoNome)
-                .then(() => {
-                    console.log("Nome registrado:", nome);
-                    setInterval(manterConexao, 5000);
-                    setInterval(buscarMensagens, 3000);
-                    setInterval(mostrarUsuarios, 3000);
-                })
-                .catch(quandoErro); 
-                
+            };
+            solicitarNome();
         })
         .catch(quandoErro);
 }
@@ -128,6 +136,7 @@ function buscarMensagens() {
             ul.innerHTML = ""; 
 
             mensagens.forEach(mensagem => {
+                const safeText = sanitizeText(mensagem.text);
                 const horarioLocal = formatarHorario(mensagem.time);  
                 if(mensagem.type === "status"){   
                     ul.innerHTML += `
@@ -135,7 +144,7 @@ function buscarMensagens() {
                             <span>
                                 <span class="time">(${horarioLocal})</span>
                                 <strong>${mensagem.from}</strong> 
-                                ${mensagem.text}
+                                ${safeText}
                             </span>
                         </li>
                     `
@@ -148,7 +157,7 @@ function buscarMensagens() {
                           <span>
                                 <span class="time">(${horarioLocal})</span>
                                 <strong>${mensagem.from}</strong> 
-                                reservadamente para <strong>${mensagem.to}:</strong> ${mensagem.text}
+                                reservadamente para <strong>${mensagem.to}:</strong> ${safeText}
                            </span>
                         </li>
                     `
@@ -157,11 +166,11 @@ function buscarMensagens() {
                 
                 else {
                     ul.innerHTML += `
-                        <li>
+                        <li class="msgNormal">
                             <span>
                                 <span class="time">(${horarioLocal})</span>
                                 <strong>${mensagem.from}</strong> 
-                                para <strong>${mensagem.to}:</strong> ${mensagem.text}
+                                para <strong>${mensagem.to}:</strong> ${safeText}
                            </span>
                         </li>
                    `;
@@ -284,4 +293,13 @@ const enviandoPara = () => enviarPara.innerHTML = `Enviando para ${nomeSeleciona
 enviandoPara();
 
 
+function sanitizeText(text) {
+    const element = document.createElement('div');
+    element.innerText = text;
+    let sanitizedText = element.innerHTML;
 
+    // Remove caracteres indesejados (ajuste a regex conforme necessário)
+    sanitizedText = sanitizedText.replace(/[^\x20-\x7E]/g, ''); // Remove caracteres fora da faixa ASCII
+
+    return sanitizedText;
+}
