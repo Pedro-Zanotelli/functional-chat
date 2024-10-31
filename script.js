@@ -299,7 +299,6 @@ function sanitizeText(text) {
     let sanitizedText = element.innerHTML;
 
     // Remove caracteres indesejados (ajuste a regex conforme necessário)
-    sanitizedText = sanitizedText.replace(/[^\x20-\x7E]/g, ''); // Remove caracteres fora da faixa ASCII
-
+    sanitizedText = sanitizedText.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
     return sanitizedText;
 }
